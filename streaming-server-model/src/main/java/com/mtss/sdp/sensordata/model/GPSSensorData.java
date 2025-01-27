@@ -6,50 +6,63 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 public final class GPSSensorData {
+	
 	private Timestamp timestamp;
 	private Timestamp GPSTimeStamp;
 	private double longitude;
 	private double latitude;
 	private double altitude;
 	private double GPSSpeed;
+	
 	public Timestamp getTimestamp() {
 		return timestamp;
 	}
+	
 	@JsonSetter("timestamp")
 	public void setTimestamp(Timestamp timestamp) {
 		this.timestamp = timestamp;
 	}
+	
 	public Timestamp getGPSTimeStamp() {
 		return GPSTimeStamp;
 	}
+	
 	@JsonSetter("GPSTimeStamp")
 	public void setGPSTimeStamp(Timestamp gPSTimeStamp) {
 		GPSTimeStamp = gPSTimeStamp;
 	}
+	
 	public double getLongitude() {
 		return longitude;
 	}
+	
 	@JsonSetter("longitude")
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
+	
 	public double getLatitude() {
 		return latitude;
 	}
+	
 	@JsonSetter("latitude")
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
+	
 	public double getAltitude() {
 		return altitude;
 	}
+	
 	@JsonSetter("altitude")
 	public void setAltitude(double altitude) {
 		this.altitude = altitude;
 	}
+	
 	public double getGPSSpeed() {
 		return GPSSpeed;
 	}
+	
 	@JsonSetter("GPSSpeed")
 	public void setGPSSpeed(double gPSSpeed) {
 		GPSSpeed = gPSSpeed;
@@ -59,6 +72,7 @@ public final class GPSSensorData {
 	public int hashCode() {
 		return Objects.hash(GPSSpeed, GPSTimeStamp, altitude, latitude, longitude, timestamp);
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -80,6 +94,5 @@ public final class GPSSensorData {
 	public String toString() {
 		return "GPSSensorData [timestamp=" + timestamp + ", GPSTimeStamp=" + GPSTimeStamp + ", longitude=" + longitude
 				+ ", latitude=" + latitude + ", altitude=" + altitude + ", GPSSpeed=" + GPSSpeed + "]";
-	}
-	
+	}	
 }

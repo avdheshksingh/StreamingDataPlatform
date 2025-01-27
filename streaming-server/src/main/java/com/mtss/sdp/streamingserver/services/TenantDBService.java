@@ -29,7 +29,7 @@ public class TenantDBService {
 		 * Cache- Redis
 		 * Caching mode- Cache-Aside
 		 * 
-		 * get schema from Redis Cache first, if not available in cache-
+		 * get schema from Redis Cache first, if not available in cache then-
 		 * 		retrieve from DB
 		 * 		push in cache
 		 * 		return schema to caller
@@ -41,9 +41,10 @@ public class TenantDBService {
 			// retrieve from DB
 			jsonSchema = findSchema(tenantId, eventId);
 			
-			// save in cache
-			// TODO
-			
+			// if valid, save in cache
+			if(Objects.nonNull(jsonSchema)) {
+				cacheService.setSchema(tenantId, eventId, jsonSchema);				
+			}
 		}
 		
 		return jsonSchema;
@@ -60,10 +61,10 @@ public class TenantDBService {
 			jsonSchema = eventSchema.get().getJsonSchema();
 		
 		}catch (NoSuchElementException e) {
-			LOGGER.error(e.getMessage(), e);			
+			LOGGER.error(e.getMessage(), e);
+			jsonSchema = null;
 		}
 		
 		return jsonSchema;
-	}
-	
+	}	
 }

@@ -12,8 +12,9 @@ public class CacheService {
 //	@Autowired
 //  private EventSchemaRepository eventSchemaRepository;
 	
-	
-    
+	/*
+	 * Get from cache
+	 */
 	public String getSchema(String tenantId, String eventId) {
 		
 		String jsonSchema = null;
@@ -24,11 +25,13 @@ public class CacheService {
 		return jsonSchema;		
 	}
 
-	public void findSchema(String tenantId, String eventId, String jsonSchema) {
+	/*
+	 * Save in cache
+	 */
+	public void setSchema(String tenantId, String eventId, String jsonSchema) {
 		
-
-		// TODO : save jsonSchema in cache, key tenantId+eventId
+		// TODO : save jsonSchema in cache
+		
 		return;
-	}
-	
+	}	
 }

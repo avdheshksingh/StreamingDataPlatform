@@ -59,8 +59,7 @@ public class OBDStreamController {
 					
 				} else {
 					LOGGER.info("Device is NOT Active, no need to record Sensor Data");    
-				}
-				
+				}				
 	    	}else {
 	    		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No Sensor data in Request");
 	    	}

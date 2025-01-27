@@ -26,7 +26,6 @@ public class SchemaValidationService {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(SchemaValidationService.class);
 
-
     @Autowired
     private TenantDBService tenantDBService;
 
@@ -34,18 +33,18 @@ public class SchemaValidationService {
 		Boolean isJSONValid = false;
 		
 		try {
-
 			// Load JSON Schema from Database
 			String eventSchema = tenantDBService.findSchemaByTenantAndEvent(tenantId, eventId);
+					
+			// check if schema found in DB
+			if (Objects.isNull(eventSchema)) {
+				// not found, don't proceed
+				LOGGER.error("Event Schema not found for "+tenantId+" "+eventId);
+				throw new InvalidDataException("Event Schema not found for "+tenantId+" "+eventId);
+			}
 			
 			// convert Event Obj to String JSON
 			String event = sensorDataToJSONString(eventObject);
-			
-			// check if schema found in DB
-			if (Objects.isNull(event)) {
-				// not found, don't proceed
-				throw new InvalidDataException("Event Schema not found for "+tenantId+" "+eventId);
-			}
 			
 			// Run validation
 			Set<ValidationMessage> assertions = validate(event, eventSchema);
@@ -53,10 +52,10 @@ public class SchemaValidationService {
 			// check if any error
 			if (assertions.isEmpty()) {
 				isJSONValid = true;
-				LOGGER.info("Valid Event"+tenantId+" "+eventId);
+				LOGGER.info("Valid Event "+tenantId+" "+eventId);
 			} else {
 				isJSONValid = false;
-				LOGGER.info("Valid Event"+tenantId+" "+eventId);            
+				LOGGER.info("Invalid Event for "+tenantId+" "+eventId+": "+event);            
 			}
 		}catch(Exception exception) {
 			throw new SchemaValidationException(exception.getMessage(), exception);
