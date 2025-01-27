@@ -22,9 +22,9 @@ import com.mtss.sdp.streamingserver.services.exceptions.SchemaValidationExceptio
 
 @RestController
 @RequestMapping("spd")
-public class OBDStreamController {
+public class EventStreamController {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(OBDStreamController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(EventStreamController.class);
 
     @Autowired
     private KafkaBroker broker;
