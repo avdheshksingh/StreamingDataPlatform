@@ -6,9 +6,9 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication
 @EnableEurekaClient
-public class OBDStreamApplication {
+public class EventStreamApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(OBDStreamApplication.class, args);
+		SpringApplication.run(EventStreamApplication.class, args);
 	}
 }
